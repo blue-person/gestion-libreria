@@ -1,6 +1,6 @@
 from tkinter import messagebox
 import tkinter as tk
-import basedatos as db
+import db
 
 
 # Funciones
@@ -58,7 +58,7 @@ def visualizar_libros():
 def buscar_libro():
     lista.delete(0, tk.END)
     lista_libros = db.buscar_libro(titulo.get(), autor.get(), fecha.get(),
-                                    codigo.get())
+                                   codigo.get())
 
     for libro in lista_libros:
         lista.insert(tk.END, libro)
@@ -79,7 +79,7 @@ def actualizar_datos_libro():
     titulo_libro = titulo.get()
     try:
         db.actualizar_datos_libro(id_seleccionado, titulo_libro, autor.get(),
-                                   fecha.get(), codigo.get())
+                                  fecha.get(), codigo.get())
         limpiar_ventana()
         mensaje_informacion(
             f"{titulo_libro} fue actualizado satisfactoriamente")
@@ -120,10 +120,10 @@ principal.title("Gestor de _libros")
 principal.resizable(False, False)
 
 # Etiquetas
-etiqueta_titulo = tk.Label(principal, text="_titulo")
+etiqueta_titulo = tk.Label(principal, text="Titulo")
 etiqueta_titulo.grid(row=0, column=0)
 
-etiqueta_autor = tk.Label(principal, text="_autor")
+etiqueta_autor = tk.Label(principal, text="Autor")
 etiqueta_autor.grid(row=0, column=2)
 
 etiqueta_fecha = tk.Label(principal, text="Año")
@@ -204,5 +204,5 @@ boton_cerrar.grid(row=7, column=3)
 
 # Bucle principal
 def ejecucion_principal():
-    db.conectarDB()
+    db.conectar_db()
     principal.mainloop()
